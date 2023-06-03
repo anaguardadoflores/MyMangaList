@@ -67,7 +67,8 @@ function ProfileEdit() {
                     </Form.Group>
 
                     <div className="d-grid" style={{ margin: '50px' }}>
-                        <Button variant="primary" style={{ backgroundColor: 'pink', borderColor: 'pink' }} type="submit">Save Changes</Button>
+                        <Button variant="primary" href='./Profile' style={{ backgroundColor: 'pink', borderColor: 'pink' }} type="submit">Save Changes</Button>
+                        <Button variant="danger" style={{ marginTop: '20px' }} href='./Profile' type="submit">Delete</Button>
                     </div>
                 </div>
             </div>

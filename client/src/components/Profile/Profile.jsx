@@ -3,8 +3,8 @@ import "./Profile.css";
 import Carta from '../card/card';
 import ModalBtn from '../Modal/Modal';
 import { AuthContext } from './../../contexts/auth.context';
-import { Button } from 'react-bootstrap';
-import { Container } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 
 
 const Profile = () => {
@@ -28,7 +28,9 @@ const Profile = () => {
                         user && <li className='color'><strong>Email:</strong> {user.email}</li>
                     }
                     <br />
-                    <Button className='btnpag' href='./ProfileEdit' style={{ backgroundColor: 'pink', borderColor: 'pink' }}> Edit Profile</Button>
+                    <Link to='/ProfileEdit' className='btnpag'>
+                        Edit Profile
+                    </Link>
                 </div>
             </div>
             <hr />
