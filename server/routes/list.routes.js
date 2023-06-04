@@ -1,45 +1,50 @@
 const express = require('express');
 const router = express.Router();
 const List = require("../models/List.model");
+const Mangas = require('./manga.routes')
 
-//List Lists
-router.get("/getAllList", (req, res, next) => {
-
-    List
-        .find()
-        .then(({ data }) => res.json(data))
-        .catch(err => next(err))
-
-});
 //Create
+router.post("/createList", (req, res, next) => {
 
+    const { title, cover } = req.body;
+
+    const newList = new List({ title, cover });
+
+    newList
+        .save()
+        .then((list) => res.status(201).json({ list }))
+        .catch(err => next(err))
+});
 
 
 //Update
 router.get('/:id/edit', (req, res, next) => {
 
-    const { id } = req.params
+    const { id } = req.params;
 
     List
         .findById(id)
-        .then((list) => res.render("List/List-edit", { list }))
+        .then(list => res.status(200).json({ list }))
         .catch(err => next(err))
 });
 
 router.post('/:id/edit', (req, res, next) => {
 
-    const { title, cover, content } = req.body
-    const { id } = req.params
+    const { title, cover } = req.body;
+
+    const { id } = req.params;
 
     List
-        .findByIdAndUpdate(id, { title, cover, content })
-        .then(() => res.redirect('/'))
-        .catch(err => next(err));
+        .findByIdAndUpdate(id, { title, cover }, { new: true })
+        .then(list => res.status(200).json({ list }))
+        .catch(err => next(err))
 });
 
 //Save mangas in list
 router.post('/:_id/saveManga', (req, res, next) => {
+
     const { _id } = req.params;
+
     const {
         id,
         title,
@@ -52,9 +57,13 @@ router.post('/:_id/saveManga', (req, res, next) => {
         authors,
         genres,
     } = req.body;
+
     List
         .findById(_id)
         .then((list) => {
+            if (!list) {
+                return res.status(404).json({ error: 'List not found' });
+            }
             list.content.push({
                 id,
                 title,
@@ -69,16 +78,24 @@ router.post('/:_id/saveManga', (req, res, next) => {
             });
             return list.save();
         })
-        .then(list => res.status(200).json({ list }))
+        .then((savedList) => {
+            res.status(200).json({ list: savedList });
+        })
         .catch((err) => next(err));
 });
 
 //Delete
 router.post('/:id/delete', (req, res, next) => {
+
     const { id } = req.params;
     List
         .findByIdAndDelete(id)
-        .then(() => res.redirect('/List'))
+        .then(list => {
+            if (!list) {
+                return res.status(404).json({ message: 'List not found' });
+            }
+            res.status(200).json({ list });
+        })
         .catch((err) => next(err));
 });
 

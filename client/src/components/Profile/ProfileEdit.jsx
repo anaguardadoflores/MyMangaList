@@ -61,6 +61,7 @@ function ProfileEdit() {
 
                         <div className="d-grid" style={{ margin: '50px' }}>
                             <Button variant="primary" style={{ backgroundColor: 'pink', borderColor: 'pink' }} type="submit">Save Changes</Button>
+                            <Button variant="danger" style={{ marginTop: '20px' }} type="submit">Delete</Button>
                         </div>
                     </div>
                 </div>

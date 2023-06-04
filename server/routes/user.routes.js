@@ -18,6 +18,18 @@ router.get('/Profile', (req, res) => {
         })
 })
 
+//LIST
+router.get("/:id/getAllList", (req, res, next) => {
+
+    const { id } = req.params
+
+    User
+        .findById(id).populate('lists')
+        .then((lists) => res.json({ lists }))
+        .catch(err => next(err))
+});
+
+
 //Update
 router.get('/:id/edit', (req, res, next) => {
 
@@ -50,17 +62,21 @@ router.post('/:id/edit', (req, res, next) => {
 //Delete
 router.post('/:id/delete', (req, res, next) => {
 
-    const { id } = req.params
+    const { id } = req.params;
 
     User
-        .findByIdAndDelete(id)
+        .findByIdAndDelete(id, (err, user) => {
+            if (err) {
+                res.status(400).json({ message: err });
+                return next(err);
+            }
+            res.status(200).json({ user });
+        })
         .then(user => res.status(200).json({ user }))
         .catch(err => {
             res.status(400).json({ message: err })
             next(err)
         })
 });
-
-
 
 module.exports = router;
