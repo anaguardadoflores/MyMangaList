@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import "./HomePage.css";
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context';
 
 
@@ -16,13 +17,14 @@ const HomePage = () => {
                 user
                     ?
                     <>
-                        <Button href="/" variant="danger" onClick={logout}>Log Out</Button>{' '}
+                        <Link to='/' variant="danger" className='btMore' onClick={logout}>Log Out</Link>
+
                     </>
                     :
                     <>
                         <br />
-                        <Button href="/Signup" variant="success">Sign Up</Button>{' '}
-                        <Button href="/Login" variant="warning">Log In</Button>{' '}
+                        <Link to='/Signup' variant="success" className='btMoreS'>Sign Up</Link>
+                        <Link to='/Login' className='btMoreW' variant="warning">Log In</Link>
                     </>
             }
         </div>

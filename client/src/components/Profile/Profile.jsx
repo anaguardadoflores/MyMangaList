@@ -3,7 +3,7 @@ import "./Profile.css";
 import Carta from '../card/card';
 import ModalBtn from '../Modal/Modal';
 import { AuthContext } from './../../contexts/auth.context';
-import { Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 
 

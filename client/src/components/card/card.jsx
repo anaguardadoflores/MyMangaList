@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import './card.css';
 
@@ -13,7 +13,10 @@ function Carta() {
                     <hr />
                     <Card.Text>Type</Card.Text>
                     <Card.Text>Status</Card.Text>
-                    <Button variant="primary" style={{ backgroundColor: 'pink', borderColor: 'pink' }} href='/UserList'> More information</Button>
+
+                    <Link to='/UserList' variant="primary" className='btCard'>
+                        More information
+                    </Link>
                 </Card.Body>
             </Card>
         </div>

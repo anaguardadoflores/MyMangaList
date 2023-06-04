@@ -8,3 +8,39 @@
     width: 23%;
     margin: 20px;
 }
+
+.btMore {
+    margin-top: 100px;
+    width: 120px !important;
+    padding: 5px;
+    border: 2px solid #d8525d;
+    border-radius: 5px;
+    background-color: #d8525d;
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+
+.btMoreS {
+    margin-top: 100px;
+    width: 120px !important;
+    padding: 5px;
+    border: 2px solid #8c59b1;
+    border-radius: 5px;
+    background-color: #8c59b1;
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+
+.btMoreW {
+    margin-top: 100px;
+    width: 120px !important;
+    padding: 5px;
+    border: 2px solid #94bf3f;
+    border-radius: 5px;
+    background-color: #94bf3f;
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}

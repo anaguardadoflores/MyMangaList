@@ -6,13 +6,14 @@ const List = require("../models/List.model");
 router.get("/getAllList", (req, res, next) => {
 
     List
-        .getAllList()
+        .find()
         .then(({ data }) => res.json(data))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
-    // .find()
-    // .then((lists) => res.json(lists))
 });
+//Create
+
+
 
 //Update
 router.get('/:id/edit', (req, res, next) => {
@@ -37,17 +38,40 @@ router.post('/:id/edit', (req, res, next) => {
 });
 
 //Save mangas in list
-// router.post('/:id/saveManga', (req, res, next) => {
-//     const { id } = req.params;
-//     const { mangaId } = req.body;
-//     List.findById(id)
-//         .then((list) => {
-//             list.mangas.push(mangaId);
-//             return list.save();
-//         })
-//         .then(() => res.redirect('/List'))
-//         .catch((err) => next(err));
-// });
+router.post('/:_id/saveManga', (req, res, next) => {
+    const { _id } = req.params;
+    const {
+        id,
+        title,
+        images,
+        type,
+        status,
+        score,
+        chapters,
+        synopsis,
+        authors,
+        genres,
+    } = req.body;
+    List
+        .findById(_id)
+        .then((list) => {
+            list.content.push({
+                id,
+                title,
+                images,
+                type,
+                status,
+                score,
+                chapters,
+                synopsis,
+                authors,
+                genres,
+            });
+            return list.save();
+        })
+        .then(list => res.status(200).json({ list }))
+        .catch((err) => next(err));
+});
 
 //Delete
 router.post('/:id/delete', (req, res, next) => {

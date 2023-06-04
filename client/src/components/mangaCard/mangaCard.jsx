@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom'
 import './mangaCard.css';
 
 function mangaCard({ manga }) {
@@ -18,7 +19,9 @@ function mangaCard({ manga }) {
                     <Card.Text>Status: {manga.status}</Card.Text>
                     <Card.Text>Chapters:{manga.chapters && manga.chapters.length ? manga.chapters : 'N/A'}</Card.Text>
                     <Card.Text>Score: {manga.score}</Card.Text>
-                    <Button variant="primary" style={{ backgroundColor: 'pink', borderColor: 'pink' }} href={`/Detail/${manga.mal_id}`}> More information</Button>
+                    <Link to={`/Detail/${manga.mal_id}`} variant="primary" className='btMangaCard'>
+                        More information
+                    </Link>
                 </Card.Body>
             </Card>
         </div>

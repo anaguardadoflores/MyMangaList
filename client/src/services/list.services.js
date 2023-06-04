@@ -4,12 +4,13 @@ class ListServices {
 
     constructor() {
         this.api = axios.create({
-            baseURL: 'mongodb+srv://anaguflo:aVtRuXr17oNKh091@manga.r5bj12t.mongodb.net/'
+            baseURL: `${process.env.REACT_APP_API_URL}/list`
+
         })
     }
 
     getAllList() {
-        return this.api.get('/')
+        return this.api.get('/getAllList')
     }
 }
 

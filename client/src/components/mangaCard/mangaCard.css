@@ -1,3 +1,14 @@
 .card-container {
     margin: 70px;
 }
+
+.btMangaCard {
+    margin-top: 100px;
+    width: 120px !important;
+    padding: 5px;
+    border: 2px solid #FEBCC1;
+    border-radius: 5px;
+    background-color: #FEBCC1;
+    text-decoration: none;
+    color: white;
+}
