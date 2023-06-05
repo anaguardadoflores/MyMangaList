@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import mangaService from '../../services/manga.services';
+import CustomDropdownButton from '../DropBtn/DropBtn';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Detail.css';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-// import Loader from "../../components/Loader/Loader"
-
 
 const Detail = () => {
 
@@ -58,16 +55,11 @@ const Detail = () => {
                     <p><strong>Chapters: </strong>{manga.chapters && manga.chapters.length ? manga.chapters : 'N/A'}</p>
                     <p><strong>Synopsis:</strong>{manga.synopsis}</p>
                 </div>
-
-                <DropdownButton id="dropdown-basic-button" variant="success" title="Add to the list">
-                    <Dropdown.Item href="#/action-1">List 1</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">List 2</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">List 3</Dropdown.Item>
-                </DropdownButton>
             </div>
+            <CustomDropdownButton />
             <hr />
             <Link to="/List">
-                <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }}>Back</Button>
+                <Button variant="primary" style={{ backgroundColor: 'purple', borderColor: 'purple', paddingLeft: '20px', paddingRight: '20px' }}>Back</Button>
             </Link>
         </div>
     )
