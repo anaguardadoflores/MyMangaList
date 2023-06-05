@@ -2,17 +2,30 @@ const express = require('express');
 const router = express.Router();
 const List = require("../models/List.model");
 const Mangas = require('./manga.routes')
+const User = require("../models/User.model");
 
 //Create
-router.post("/createList", (req, res, next) => {
+router.post("/:id/createList", (req, res, next) => {
 
     const { title, cover } = req.body;
+
+    const { id } = req.params;
 
     const newList = new List({ title, cover });
 
     newList
         .save()
-        .then((list) => res.status(201).json({ list }))
+        .then((list) => {
+
+            User
+                .findById(id)
+                .then((user) => {
+                    user.lists.push(list._id)
+                    return user.save()
+                })
+                .catch(err => next(err))
+            res.status(201).json({ list })
+        })
         .catch(err => next(err))
 });
 

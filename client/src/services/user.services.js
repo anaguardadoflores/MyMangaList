@@ -8,6 +8,10 @@ class UserService {
         })
     }
 
+    getAllList(id) {
+        return this.api.get(`/${id}/getAllList`)
+    }
+
     editGet(id) {
         return this.api.get(`/${id}/edit`)
     }

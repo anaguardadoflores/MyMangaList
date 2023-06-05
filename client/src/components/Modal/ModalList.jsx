@@ -63,7 +63,7 @@ function ModalList(closeModal, updateList) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }}>Create ❤️</Button>
+                    <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }}>Edit ❤️</Button>
                     <Button variant="danger">Delete</Button>
                     <Button variant="secondary" onClick={handleClose}>
                         Close

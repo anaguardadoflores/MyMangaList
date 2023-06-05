@@ -7,13 +7,8 @@ class ListServices {
             baseURL: `${process.env.REACT_APP_API_URL}/list`
         })
     }
-
-    getAllList() {
-        return this.api.get('/getAllList')
-    }
-
-    createList() {
-        return this.api.get('/createList')
+    createList(id) {
+        return this.api.get(`/${id}/createList`)
     }
 
     editGet(id) {
