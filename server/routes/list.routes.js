@@ -6,28 +6,63 @@ const User = require("../models/User.model");
 
 //Create
 router.post("/:id/createList", (req, res, next) => {
-
     const { title, cover } = req.body;
-
     const { id } = req.params;
 
     const newList = new List({ title, cover });
 
     newList
         .save()
-        .then((list) => {
-
+        .then(createdList => {
             User
-                .findById(id)
-                .then((user) => {
-                    user.lists.push(list._id)
-                    return user.save()
+                .findByIdAndUpdate(
+                    id,
+                    { $addToSet: { lists: createdList._id } },
+                    { new: true }
+                )
+                .then(updatedUser => {
+                    res.json(updatedUser);
                 })
-                .catch(err => next(err))
-            res.status(201).json({ list })
+                .catch(err => next(err));
         })
-        .catch(err => next(err))
+        .catch(err => next(err));
 });
+
+
+// router.post("/:id/createList", (req, res, next) => {
+
+//     const { title, cover } = req.body;
+
+//     const { id } = req.params;
+
+//     const newList = new List({ title, cover });
+
+//     List
+//         .create({ title, cover })
+//         .then(createdList => {
+//             User
+//                 .findByIdAndUpdate(id, { $addToSet: { lists: createdList._id } }, { new: true })
+//                 .then(updatedUser => res.json(updatedUser))
+//                 .catch(err => next(err))
+//         })
+//         .catch(err => next(err))
+
+
+// newList
+//     .save()
+//     .then((list) => {
+
+//         User
+//             .findById(id)
+//             .then((user) => {
+//                 user.lists.push(list._id)
+//                 return user.save()
+//             })
+//             .catch(err => next(err))
+//         res.status(201).json({ list })
+//     })
+//     .catch(err => next(err))
+// });
 
 
 //Update

@@ -5,11 +5,11 @@ import Modal from 'react-bootstrap/Modal';
 import listServices from "../../services/list.services"
 
 
-function ModalList(closeModal, updateList) {
+function ModalList() {
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -22,8 +22,7 @@ function ModalList(closeModal, updateList) {
         listServices
             .saveList(show)
             .then(() => {
-                closeModal()
-                updateList()
+                handleClose()
             })
             .catch(err => console.log(err))
     }
@@ -63,7 +62,9 @@ function ModalList(closeModal, updateList) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }}>Edit ❤️</Button>
+                    <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }} onClick={handleSubmit}>
+                        Edit ❤️
+                    </Button>
                     <Button variant="danger">Delete</Button>
                     <Button variant="secondary" onClick={handleClose}>
                         Close

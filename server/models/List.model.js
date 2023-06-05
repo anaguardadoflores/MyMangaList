@@ -4,7 +4,6 @@ const listSchema = new Schema(
     {
         title: {
             type: String,
-            required: [true, "Name is required."],
         },
         cover: {
             type: String,

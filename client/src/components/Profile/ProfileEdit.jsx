@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import userService from './../../services/user.services'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../contexts/auth.context"
 import "./Profile.css";
 
@@ -25,8 +25,6 @@ function ProfileEdit() {
     const handleSubmit = e => {
 
         e.preventDefault()
-
-        console.log(editData, user._id)
 
         userService
             .editPost(editData, user._id)

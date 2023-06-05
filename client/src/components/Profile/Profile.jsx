@@ -39,8 +39,6 @@ const Profile = () => {
             <ModalBtn />
             <div style={{ display: 'flex' }}>
                 <Carta />
-                <Carta />
-                <Carta />
             </div>
         </Container>
 
