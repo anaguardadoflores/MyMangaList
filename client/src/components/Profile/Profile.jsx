@@ -28,7 +28,7 @@ const Profile = () => {
                         user && <li className='color'><strong>Email:</strong> {user.email}</li>
                     }
                     <br />
-                    <Link to='/ProfileEdit' className='btnpag'>
+                    <Link to='/ProfileEdit' className='btnEdit'>
                         Edit Profile
                     </Link>
                 </div>

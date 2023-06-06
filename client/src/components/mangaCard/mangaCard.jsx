@@ -6,8 +6,6 @@ import './mangaCard.css';
 
 function mangaCard({ manga }) {
 
-    console.log(manga)
-
     return (
         <div className="card-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
             <Card style={{ width: '15rem' }}>

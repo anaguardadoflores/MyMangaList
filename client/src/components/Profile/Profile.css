@@ -15,6 +15,7 @@
      display: flex;
      flex-direction: column;
      justify-content: center;
+     align-items: center;
      color: #5a6993;
  }
 
@@ -52,8 +53,8 @@
      color: white;
  }
 
- .btnedit {
-     margin-top: 100px;
+ .btnEdit {
+     margin-top: 0;
      width: 120px !important;
      padding: 5px;
      border: 2px solid #FEBCC1;

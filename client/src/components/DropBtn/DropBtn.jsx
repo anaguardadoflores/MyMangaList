@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from './../../contexts/auth.context';
 import userService from "../../services/user.services";
-import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
-import { Link } from 'react-router-dom';
 
 function CustomDropdownButton() {
     const { user } = useContext(AuthContext);

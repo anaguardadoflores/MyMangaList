@@ -9,7 +9,6 @@ class ListServices {
     }
 
     createList(id, show) {
-        console.log('THIS IS THE ID --------', id)
         return this.api.post(`/${id}/createList`, show)
     }
 

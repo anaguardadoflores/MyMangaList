@@ -28,7 +28,7 @@ function Carta() {
                     <Card.Body>
                         <Card.Title>{elm.title}</Card.Title>
                         <hr />
-                        <Link to='/UserList' variant="primary" className='btCard'>
+                        <Link to={`/UserList/${elm._id}`} variant="primary" className='btCard'>
                             More information
                         </Link>
                     </Card.Body>
