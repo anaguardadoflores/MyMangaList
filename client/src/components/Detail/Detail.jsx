@@ -55,7 +55,7 @@ const Detail = () => {
                     <p><strong>Synopsis:</strong>{manga.synopsis}</p>
                 </div>
             </div>
-            <CustomDropdownButton />
+            <CustomDropdownButton manga={manga} />
             <hr />
             <Link to="/List">
                 <Button variant="primary" style={{ backgroundColor: 'purple', borderColor: 'purple', paddingLeft: '20px', paddingRight: '20px' }}>Back</Button>

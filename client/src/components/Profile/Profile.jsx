@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import "./Profile.css";
 import Carta from '../card/card';
 import ModalBtn from '../Modal/Modal';
@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 const Profile = () => {
 
     const { user } = useContext(AuthContext);
+
+    const [lists, setLists] = useState([]);
 
     return (
         <Container>
@@ -36,9 +38,9 @@ const Profile = () => {
             <hr />
             <h2 className='color'><strong>My Manga Lists:</strong></h2>
             <br />
-            <ModalBtn />
+            <ModalBtn lists={lists} setLists={setLists} />
             <div style={{ display: 'flex' }}>
-                <Carta />
+                <Carta lists={lists} setLists={setLists} />
             </div>
         </Container>
 

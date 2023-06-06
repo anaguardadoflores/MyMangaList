@@ -5,10 +5,9 @@ import Card from 'react-bootstrap/Card';
 import userService from "../../services/user.services"
 import './card.css';
 
-function Carta() {
+function Carta({ lists, setLists }) {
 
     const { user } = useContext(AuthContext);
-    const [lists, setLists] = useState([]);
 
     useEffect(() => {
         getUserLists(user._id);

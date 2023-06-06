@@ -5,12 +5,10 @@ import Modal from 'react-bootstrap/Modal';
 import { AuthContext } from '../../contexts/auth.context';
 
 
-function ModalBtn() {
+function ModalBtn({ lists, setLists }) {
 
     const [show, setShow] = useState(false);
-
     const [formData, setFormData] = useState({ title: "", cover: "" });
-
     const { user } = useContext(AuthContext);
 
 
@@ -28,7 +26,8 @@ function ModalBtn() {
 
         listServices
             .createList(user._id, formData)
-            .then(() => {
+            .then((data) => {
+                setLists(data?.data?.lists)
                 handleClose()
             })
             .catch((err) => console.log(err));

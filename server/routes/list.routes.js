@@ -9,7 +9,7 @@ router.post("/:id/createList", (req, res, next) => {
     const { title, cover } = req.body;
     const { id } = req.params;
 
-    const newList = new List({ title, cover });
+    const newList = new List({ title, cover: cover || 'https://i.pinimg.com/originals/b3/e1/44/b3e1440f17b11f34677ddf69913b7003.jpg' });
 
     newList
         .save()
@@ -19,7 +19,7 @@ router.post("/:id/createList", (req, res, next) => {
                     id,
                     { $addToSet: { lists: createdList._id } },
                     { new: true }
-                )
+                ).populate('lists')
                 .then(updatedUser => {
                     res.json(updatedUser);
                 })
@@ -105,6 +105,7 @@ router.post('/:_id/saveManga', (req, res, next) => {
         authors,
         genres,
     } = req.body;
+
 
     List
         .findById(_id)

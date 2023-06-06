@@ -21,7 +21,7 @@ class ListServices {
     }
 
     saveManga(id, listData) {
-        return this.api.get(`/${id}/saveManga`, listData)
+        return this.api.post(`/${id}/saveManga`, listData)
     }
 
     delete(id) {
