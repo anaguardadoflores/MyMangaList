@@ -9,7 +9,7 @@ function mangaCard({ manga }) {
     return (
         <div className="card-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
             <Card style={{ width: '15rem' }}>
-                <Card.Img variant="top" src={manga.images.jpg.image_url} />
+                <Card.Img variant="top" src={manga.images.jpg?.image_url ? manga.images.jpg.image_url : manga.images[0]} />
                 <Card.Body>
                     <Card.Title>{manga.title}</Card.Title>
                     <hr />

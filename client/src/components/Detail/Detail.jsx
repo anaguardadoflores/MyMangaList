@@ -18,7 +18,6 @@ const Detail = () => {
 
 
     const findManga = () => {
-
         mangaService
             .findById(id)
             .then(({ data }) => setManga(data.data))

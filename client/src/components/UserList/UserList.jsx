@@ -38,7 +38,7 @@ function UserList() {
             })
             .catch(err => console.log(err));
     };
-
+    console.log(list.content)
     return (
         <div className="List">
             <Container>
@@ -51,11 +51,11 @@ function UserList() {
                 </Spinner>
             ) : (
                 <Row>
-                    {/* {titles.map((elm, index) => (
+                    {list.content.map((elm, index) => (
                         <Col key={index} xs={12} sm={6} md={4} lg={3}>
                             <Carta manga={elm} />
                         </Col>
-                    ))} */}
+                    ))}
                 </Row>
             )}
         </div>
