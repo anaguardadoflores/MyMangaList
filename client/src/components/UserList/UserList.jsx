@@ -5,6 +5,7 @@ import Carta from '../mangaCard/mangaCard';
 import "./UserList.css";
 import { useParams } from 'react-router-dom';
 import listServices from '../../services/list.services';
+import ModalList from '../Modal/ModalList';
 
 function UserList() {
 
@@ -38,12 +39,13 @@ function UserList() {
             })
             .catch(err => console.log(err));
     };
-    console.log(list.content)
     return (
         <div className="List">
             <Container>
                 <h2 className="List" style={{ color: '#5a6993' }}><strong>{list.title}</strong></h2>
                 <hr />
+                <ModalList />
+                <br />
             </Container>
             {isLoading ? (
                 <Spinner animation="border" role="status">

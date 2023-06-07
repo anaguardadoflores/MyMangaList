@@ -11,7 +11,6 @@ function CustomDropdownButton({ manga }) {
     const [selectedList, setSelectedList] = useState(null);
 
     useEffect(() => {
-        console.log(manga)
         getUserLists(user._id);
     }, [user._id]);
 
@@ -38,8 +37,6 @@ function CustomDropdownButton({ manga }) {
             authors: manga?.authors[0]?.name,
             genres: manga?.genres?.map((ele) => ele?.name)
         };
-
-        console.log('genres', manga?.genres?.map((ele) => ele?.name))
 
         listServices
             .saveManga(list_id, mangaData)

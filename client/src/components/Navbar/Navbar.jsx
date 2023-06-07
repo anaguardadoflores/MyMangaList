@@ -17,7 +17,9 @@ const Navbar = () => {
                             <li><Link to="/List">List</Link></li>
                             <li><Link as="span" onClick={logout} to={'/'}>Log Out</Link></li>
                             <Link to="/Profile" className='colorUser'>Hello, {user.username}!</Link>
-                            <li className="profile-link"><Link to="/Profile">Profile</Link></li>
+                            <li className="profile-link"><Link to="/Profile">Profile
+                                <img src={user.avatar} style={{ width: '30px', marginLeft: '10px', borderRadius: '30px', marginTop: '-3px' }} className="profile-link" alt="#" to="/Profile" />
+                            </Link></li>
                         </>
                         :
                         <>

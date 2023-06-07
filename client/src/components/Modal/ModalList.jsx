@@ -1,32 +1,46 @@
-import { useState } from 'react';
-import { Form } from "react-bootstrap"
-import Button from 'react-bootstrap/Button';
+import React, { useContext, useState } from "react";
+import { Form, Button } from 'react-bootstrap';
+import listServices from './../../services/list.services';
 import Modal from 'react-bootstrap/Modal';
-import listServices from "../../services/list.services"
+import { AuthContext } from '../../contexts/auth.context';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
-
-function ModalList() {
+function ModalBtn({ lists, setLists }) {
     const [show, setShow] = useState(false);
+    const [formData, setFormData] = useState({ title: "", cover: "" });
+    const { user } = useContext(AuthContext);
+    const { list_id } = useParams();
+    const navigate = useNavigate();
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-    const handleInputChange = event => {
-        const { name, value } = event.target
-        setShow({ ...show, [name]: value })
-    }
+    const handleInputChange = e => {
+        const { value, name } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleDelete = () => {
+        listServices
+            .delete(list_id)
+            .then(data => {
+                setLists(data?.data?.lists);
+                navigate('/Profile');
+            })
+            .catch(err => console.log(err));
+    };
 
     const handleSubmit = event => {
-        event.preventDefault()
+        event.preventDefault();
 
         listServices
-            .saveList(show)
-            .then(() => {
-                handleClose()
+            .editGet(list_id)
+            .then(data => {
+                setLists(data?.data?.lists);
+                handleClose();
             })
-            .catch(err => console.log(err))
-    }
-
+            .catch(err => console.log(err));
+    };
 
     return (
         <>
@@ -34,45 +48,38 @@ function ModalList() {
                 Edit List
             </Button>
 
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                keyboard={false}
-            >
+            <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit List</Modal.Title>
+                    <Modal.Title>Edit List ❤️</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="ListName">
                             <Form.Label>List Name:</Form.Label>
-                            <Form.Control
-                                type="ListName"
-                                onChange={handleInputChange}
-                            />
+                            <Form.Control type="text" name="title" value={formData.title} onChange={handleInputChange} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="Cover">
                             <Form.Label>Cover:</Form.Label>
-                            <Form.Control
-                                type="Cover"
-                                onChange={handleInputChange}
-                            />
+                            <Form.Control type="URL" name="cover" value={formData.cover} onChange={handleInputChange} />
                         </Form.Group>
+
+                        <div className="d-grid mt-3">
+                            <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }} type="submit" onClick={handleSubmit}>Edit ❤️</Button>
+                            <Link to='/Profile' >
+                                <Button variant="danger" style={{ marginTop: '10px', width: '100%' }} onClick={handleDelete}>
+                                    Delete
+                                </Button>
+                            </Link>
+                            <Button variant="secondary" style={{ marginTop: '10px' }} onClick={handleClose}>
+                                Close
+                            </Button>
+                        </div>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }} onClick={handleSubmit}>
-                        Edit ❤️
-                    </Button>
-                    <Button variant="danger">Delete</Button>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );
+
 }
 
-export default ModalList;
+export default ModalBtn;
