@@ -23,7 +23,7 @@ function Carta({ lists, setLists }) {
         lists && <div className="card-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
             {lists.map(elm => {
                 return <Card style={{ width: '15rem' }} className='cardListEdit' key={elm._id}>
-                    <Card.Img variant="top" src={elm.cover} />
+                    <Card.Img variant="top" src={elm.cover} className="card-image" />
                     <Card.Body>
                         <Card.Title>{elm.title}</Card.Title>
                         <hr />

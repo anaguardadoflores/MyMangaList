@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Spinner, Container, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Spinner, Container, Row, Col, Button } from 'react-bootstrap';
 import mangaService from '../../services/manga.services';
 import Carta from '../mangaCard/mangaCard';
 import "./UserList.css";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import listServices from '../../services/list.services';
 import ModalList from '../Modal/ModalList';
 
@@ -42,11 +42,19 @@ function UserList() {
     return (
         <div className="List">
             <Container>
-                <h2 className="List" style={{ color: '#5a6993' }}><strong>{list.title}</strong></h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h2 className="List" style={{ color: '#5a6993', textAlign: 'center', margin: '0 auto' }}>
+                        <strong>{list.title}</strong>
+                    </h2>
+                    <Link to="/Profile">
+                        <Button variant="primary" style={{ backgroundColor: 'purple', borderColor: 'purple', paddingLeft: '20px', paddingRight: '20px', marginRight: '30px' }}>Back</Button>
+                    </Link>
+                </div>
                 <hr />
                 <ModalList />
                 <br />
             </Container>
+
             {isLoading ? (
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>

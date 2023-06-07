@@ -7,9 +7,14 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 
 function ModalBtn({ lists, setLists }) {
     const [show, setShow] = useState(false);
-    const [formData, setFormData] = useState({ title: "", cover: "" });
-    const { user } = useContext(AuthContext);
     const { list_id } = useParams();
+    const { user } = useContext(AuthContext);
+
+    const [formData, setFormData] = useState({
+        title: "",
+        cover: ""
+    });
+
     const navigate = useNavigate();
 
     const handleShow = () => setShow(true);
@@ -31,16 +36,17 @@ function ModalBtn({ lists, setLists }) {
     };
 
     const handleSubmit = event => {
-        event.preventDefault();
 
+        event.preventDefault();
         listServices
-            .editGet(list_id)
+            .editPost(formData, list_id)
             .then(data => {
-                setLists(data?.data?.lists);
-                handleClose();
+                navigate('/Profile');
             })
             .catch(err => console.log(err));
     };
+
+    const { title, cover } = formData
 
     return (
         <>
@@ -56,15 +62,17 @@ function ModalBtn({ lists, setLists }) {
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="ListName">
                             <Form.Label>List Name:</Form.Label>
-                            <Form.Control type="text" name="title" value={formData.title} onChange={handleInputChange} />
+                            <Form.Control type="text" name="title" value={title} onChange={handleInputChange} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="Cover">
                             <Form.Label>Cover:</Form.Label>
-                            <Form.Control type="URL" name="cover" value={formData.cover} onChange={handleInputChange} />
+                            <Form.Control type="URL" name="cover" value={cover} onChange={handleInputChange} />
                         </Form.Group>
 
                         <div className="d-grid mt-3">
-                            <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink' }} type="submit" onClick={handleSubmit}>Edit ❤️</Button>
+                            <Link to='/Profile'>
+                                <Button variant="warning" style={{ backgroundColor: 'pink', borderColor: 'pink', marginTop: '10px', width: '100%' }} type="submit" onClick={handleSubmit}>Edit ❤️</Button>
+                            </Link>
                             <Link to='/Profile' >
                                 <Button variant="danger" style={{ marginTop: '10px', width: '100%' }} onClick={handleDelete}>
                                     Delete
