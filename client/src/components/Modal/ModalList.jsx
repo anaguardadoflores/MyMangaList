@@ -1,18 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Form, Button } from 'react-bootstrap';
 import listServices from './../../services/list.services';
 import Modal from 'react-bootstrap/Modal';
-import { AuthContext } from '../../contexts/auth.context';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-function ModalBtn({ lists, setLists }) {
+function ModalBtn({ list }) {
     const [show, setShow] = useState(false);
     const { list_id } = useParams();
-    const { user } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
-        title: "",
-        cover: ""
+        title: list.title,
+        cover: list.cover
     });
 
     const navigate = useNavigate();
@@ -29,7 +27,6 @@ function ModalBtn({ lists, setLists }) {
         listServices
             .delete(list_id)
             .then(data => {
-                setLists(data?.data?.lists);
                 navigate('/Profile');
             })
             .catch(err => console.log(err));

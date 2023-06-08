@@ -9,26 +9,13 @@ import ModalList from '../Modal/ModalList';
 
 function UserList() {
 
-    const [titles, setTitles] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [list, setList] = useState([]);
-
     const { list_id } = useParams()
 
     useEffect(() => {
-        getMangas();
         getUserList();
     }, []);
-
-    const getMangas = () => {
-        mangaService
-            .getAllMangas()
-            .then(({ data }) => {
-                setTitles(data.data);
-                setIsLoading(false);
-            })
-            .catch(err => console.log(err));
-    };
 
     const getUserList = () => {
 
@@ -36,6 +23,7 @@ function UserList() {
             .editGet(list_id)
             .then(({ data }) => {
                 setList(data.list)
+                setIsLoading(false);
             })
             .catch(err => console.log(err));
     };
@@ -51,7 +39,7 @@ function UserList() {
                     </Link>
                 </div>
                 <hr />
-                <ModalList />
+                {!isLoading && <ModalList list={list} />}
                 <br />
             </Container>
 
