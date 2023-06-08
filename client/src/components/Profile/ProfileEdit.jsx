@@ -7,7 +7,7 @@ import "./Profile.css";
 
 function ProfileEdit() {
 
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
     const [editData, setEditData] = useState({
         email: user.email,
@@ -28,7 +28,10 @@ function ProfileEdit() {
 
         userService
             .editPost(editData, user._id)
-            .then(() => navigate('/Profile'))
+            .then(() => {
+                setUser({ ...user, email, avatar, username })
+                navigate('/Profile')
+            })
             .catch(err => console.log(err))
     }
 

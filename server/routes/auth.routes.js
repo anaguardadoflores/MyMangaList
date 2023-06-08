@@ -88,7 +88,8 @@ router.get('/verify', isAuthenticated, (req, res, next) => {
 
     console.log('EL USUARIO TIENE UN TOKEN CORRECTO Y SUS DATOS SON', req.payload)
 
-    res.status(200).json(req.payload)
+    User.findOne({ email: req.payload.email }).then((foundUser) => res.status(200).json(foundUser))
+
 })
 
 module.exports = router
