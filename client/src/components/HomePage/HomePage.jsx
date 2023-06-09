@@ -10,7 +10,7 @@ const HomePage = () => {
     return (
         <div className="Home">
             <h2 className='Home'><strong>Welcome to MyMangaList!</strong></h2>
-            <img src="https://i.pinimg.com/564x/c0/7a/2d/c07a2dbbf120ccc225997970ec59d58d.jpg" alt="#" className="imgHome" />
+            <img src="https://i.postimg.cc/hPTvz0nZ/homepage-IMG.png" alt="#" className="imgHome" />
             <br />
             {
                 user
